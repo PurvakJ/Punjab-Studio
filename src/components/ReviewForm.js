@@ -26,7 +26,7 @@ const ReviewForm = () => {
     setHoverValue(undefined);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { 
     e.preventDefault();
 
     const templateParams = {

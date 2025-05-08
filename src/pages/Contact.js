@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaPhone, FaMapMarkerAlt, FaClock, FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
 import ReviewForm from '../components/ReviewForm';
 import './Contact.css';
 
@@ -13,6 +14,7 @@ const Contact = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,19 +26,40 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend or email service
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-      service: ''
+    setIsLoading(true);
+
+    // Send email using EmailJS
+    emailjs.send(
+        'service_ioq2lni', // Your EmailJS service ID
+        'template_ncrpsl4',
+      {
+        from_name: formData.name,        // maps to {{from_name}}
+        from_email: formData.email,      // maps to {{from_email}}
+        phone: formData.phone,           // maps to {{phone}}
+        service: formData.service,       // maps to {{service}}
+        message: formData.message,       // maps to {{message}}
+        to_email: 'anilsharma81376@gmail.com'  // maps to {{to_email}}
+      },
+      'DVqkghOUYqdZHgNda' // Your EmailJS user ID
+    )
+    .then((response) => {
+      console.log('Email sent successfully!', response);
+      setIsSubmitted(true);
+      setIsLoading(false);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        service: ''
+      });
+      setTimeout(() => setIsSubmitted(false), 5000);
+    })
+    .catch((error) => {
+      console.error('Failed to send email:', error);
+      setIsLoading(false);
+      alert('Failed to send message. Please try again later.');
     });
-    
-    // Reset submission status after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
   };
 
   return (
@@ -101,7 +124,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+91 9876543210"
+                    placeholder="+91 8288885562"
                     required
                   />
                 </div>
@@ -139,9 +162,19 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-button">
-                <FaPaperPlane className="button-icon" />
-                Send Message
+              <button 
+                type="submit" 
+                className="submit-button"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  'Sending...'
+                ) : (
+                  <>
+                    <FaPaperPlane className="button-icon" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           )}
@@ -159,7 +192,7 @@ const Contact = () => {
             <div className="info-content">
               <h3>Phone</h3>
               <p>+91 98152-48123</p>
-              <p>+91 98765-43210 (Alternate)</p>
+              <p>+91 82888-85562 (Alternate)</p>
             </div>
           </div>
           

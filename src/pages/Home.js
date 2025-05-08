@@ -4,6 +4,14 @@ import TestimonialCard from '../components/TestimonialCard';
 import GalleryPreview from '../components/GalleryPreview';
 import './Home.css';
 import { useNavigate } from 'react-router-dom'; 
+import image01 from '../assets/01.jpeg';
+import image02 from '../assets/02.jpg';
+import image03 from '../assets/03.jpeg';
+import image04 from '../assets/04.jpg';
+import image05 from '../assets/05.jpeg';
+import image06 from '../assets/06.jpeg';
+import image07 from '../assets/07.jpeg';
+import image08 from '../assets/08.jpeg';
 
 const Home = () => {
   const navigate = useNavigate();  
@@ -105,43 +113,43 @@ const Home = () => {
   const galleryItems = [
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image01,
       category: "Wedding"
     },
     {
-      type: "video",
-      src: "https://player.vimeo.com/video/90509568?h=5e0f8e8d8a",
+      type: "image",
+      src: image02,
       category: "Cinematic"
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1529632810928-5d3e1a5df258?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image03,
       category: "Pre-Wedding"
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image04,
       category: "Traditional"
     },
     // Additional gallery items for full view
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image05,
       category: "Reception"
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image06,
       category: "Candid"
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image07,
       category: "Traditional"
     },
     {
       type: "image",
-      src: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+      src: image08,
       category: "Pre-Wedding"
     }
   ];
@@ -223,7 +231,7 @@ const Home = () => {
         </div>
         
         {/* Show first 4 items initially, all items when expanded */}
-        <GalleryPreview items={showFullGallery ? galleryItems : galleryItems.slice(0, 4)} />
+        <GalleryPreview items={showFullGallery ? galleryItems : galleryItems.slice(0, 3)} />
         
         <button 
           className="view-more" 
