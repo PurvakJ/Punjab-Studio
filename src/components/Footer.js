@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
           <div className="contact-item">
             <MdEmail className="contact-icon" />
-            <span>punjabstudio@gmail.com</span>
+            <span>anilsharma81376@gmail.com</span>
           </div>
         </div>
 
